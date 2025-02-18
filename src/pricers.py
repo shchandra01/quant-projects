@@ -1,5 +1,6 @@
 import numpy as np
-from brownian1d import geometric
+from brownian_1d import geometric
+from brownian_nd import arithmetic
 
 def european(initial, timesteps, sim, mu, sigma, strike, flavor='call'):
     s_t = geometric(initial, timesteps, sim, mu, sigma)
@@ -32,3 +33,10 @@ def lookback(initial, timesteps, sim, mu, sigma, flavor='call'):
     
 def european_analytic():
     pass
+
+
+def basket(initial, timesteps, paths, mu, corr_mat, vols, weights, strike):
+    all_paths = arithmetic(initial, timesteps, paths, mu, corr_mat, vols)
+    ST = all_paths[:,:,-1] # mu.shape[0], paths, timesteps.shape[0]
+    intrinsic = np.maximum(np.dot(ST.T,weights) - strike, 0)
+    return np.mean(intrinsic)

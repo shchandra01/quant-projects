@@ -1,7 +1,7 @@
 import numpy as np
 import sys
 sys.path.append(r'C:\Users\shiva\OneDrive\Documents\Quant Finance\quant-projects\src')
-from brownian1d import geometric,arithmetic
+from brownian_1d import geometric,arithmetic
 import pricers
 import matplotlib.pyplot as plt
 
